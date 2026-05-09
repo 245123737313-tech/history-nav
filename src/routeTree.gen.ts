@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as CodingTrackRouteImport } from './routes/coding-track'
+import { Route as CodingHistoryRouteImport } from './routes/coding-history'
 import { Route as IndexRouteImport } from './routes/index'
 
 const CodingTrackRoute = CodingTrackRouteImport.update({
   id: '/coding-track',
   path: '/coding-track',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CodingHistoryRoute = CodingHistoryRouteImport.update({
+  id: '/coding-history',
+  path: '/coding-history',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -25,27 +31,31 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/coding-history': typeof CodingHistoryRoute
   '/coding-track': typeof CodingTrackRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/coding-history': typeof CodingHistoryRoute
   '/coding-track': typeof CodingTrackRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/coding-history': typeof CodingHistoryRoute
   '/coding-track': typeof CodingTrackRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/coding-track'
+  fullPaths: '/' | '/coding-history' | '/coding-track'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/coding-track'
-  id: '__root__' | '/' | '/coding-track'
+  to: '/' | '/coding-history' | '/coding-track'
+  id: '__root__' | '/' | '/coding-history' | '/coding-track'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CodingHistoryRoute: typeof CodingHistoryRoute
   CodingTrackRoute: typeof CodingTrackRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/coding-track'
       fullPath: '/coding-track'
       preLoaderRoute: typeof CodingTrackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/coding-history': {
+      id: '/coding-history'
+      path: '/coding-history'
+      fullPath: '/coding-history'
+      preLoaderRoute: typeof CodingHistoryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CodingHistoryRoute: CodingHistoryRoute,
   CodingTrackRoute: CodingTrackRoute,
 }
 export const routeTree = rootRouteImport

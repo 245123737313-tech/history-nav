@@ -4,7 +4,7 @@ export default defineConfig({
   tanstackStart: {
     server: {
       entry: "src/server.ts", // Match your server entry file path
-      preset: "netlify",       // <--- ADD THIS LINE
+      preset: "vercel",       // <--- ADD THIS LINE
     },
   },
   vite: {

@@ -180,12 +180,13 @@ function CodingHistory() {
                               {p.status}
                             </span>
                           </div>
-                          <a
-                            href={`#/submissions/${p.id}`}
+                          <Link
+                            to="/submissions/$id"
+                            params={{ id: p.id }}
                             className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-purple)] border border-[var(--brand-purple)]/30 hover:bg-[var(--brand-purple)]/10 px-3 py-1.5 rounded-md whitespace-nowrap"
                           >
-                            View Submission <ExternalLink className="size-3" />
-                          </a>
+                            View <ExternalLink className="size-3" />
+                          </Link>
                         </div>
                       ))}
                     </div>

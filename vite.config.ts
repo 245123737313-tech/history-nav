@@ -3,8 +3,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 export default defineConfig({
   tanstackStart: {
     server: {
-      entry: "src/server.ts", // Match your server entry file path
-      preset: "vercel",       // <--- ADD THIS LINE
+      entry: "src/server.ts",
+      preset: "vercel",
     },
   },
   vite: {

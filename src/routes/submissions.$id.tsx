@@ -126,161 +126,156 @@ function SubmissionPage() {
 
   return (
     <AppShell>
-      <div className="max-w-[1400px] mx-auto">
-        {/* Breadcrumbs */}
-        <div className="flex items-center gap-2 text-sm mb-4">
-          <Link to="/" className="text-[var(--brand-purple)] font-medium hover:underline">Practice</Link>
-          <ChevronRight className="size-3 text-muted-foreground" />
-          <Link to="/coding-history" className="text-[var(--brand-purple)] font-medium hover:underline">Coding Track</Link>
-          <ChevronRight className="size-3 text-muted-foreground" />
-          <span className="font-semibold">{problem.title}</span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 min-h-[calc(100vh-220px)]">
-          {/* LEFT — Question / Submission */}
-          <div className="rounded-2xl border border-border bg-card flex flex-col overflow-hidden">
-            <div className="flex items-center gap-2 px-4 py-3 border-b border-border">
-              <button
-                onClick={() => setTab("description")}
-                className={`inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full transition ${
-                  tab === "description"
-                    ? "bg-[var(--easy)] text-emerald-900"
-                    : "text-muted-foreground hover:bg-muted/50"
-                }`}
-              >
-                <FileText className="size-4" /> Description
-              </button>
-              <button
-                onClick={() => setTab("submission")}
-                className={`inline-flex items-center gap-2 text-sm font-semibold px-4 py-2 rounded-full transition ${
-                  tab === "submission"
-                    ? "bg-[var(--easy)] text-emerald-900"
-                    : "text-muted-foreground hover:bg-muted/50"
-                }`}
-              >
-                <History className="size-4" /> Submission
-              </button>
-            </div>
-
-            <div className="p-5 overflow-auto flex-1">
-              {tab === "description" ? (
-                <div className="space-y-5">
-                  <h2 className="text-2xl font-bold">{problem.title}</h2>
-                  <div className="flex items-center gap-3 flex-wrap">
-                    <span className="text-sm text-muted-foreground">{problem.topic}</span>
-                    <span className={`text-xs font-semibold px-3 py-1 rounded-full ${diffPill(problem.difficulty)}`}>
-                      {problem.difficulty}
-                    </span>
-                    <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted">{problem.success}</span>
-                  </div>
-                  <hr className="border-border" />
-
-                  <div>
-                    <h3 className="text-sm font-semibold mb-2">Problem Description</h3>
-                    <div className="rounded-lg border border-border px-4 py-3 text-sm">
-                      {problem.description}
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-semibold mb-2">Problem Constraints</h3>
-                    <div className="rounded-lg border border-border px-4 py-3">
-                      <ul className="list-disc pl-5 text-sm space-y-1">
-                        {problem.constraints.map((c, i) => <li key={i}>{c}</li>)}
-                      </ul>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-semibold mb-2">Input Format</h3>
-                    <pre className="rounded-lg border border-border px-4 py-3 text-sm font-mono whitespace-pre-wrap">{problem.inputFormat}</pre>
-                  </div>
-
-                  <div>
-                    <h3 className="text-sm font-semibold mb-2">Output Format</h3>
-                    <pre className="rounded-lg border border-border px-4 py-3 text-sm font-mono whitespace-pre-wrap">{problem.outputFormat}</pre>
-                  </div>
-                </div>
-              ) : (
-                <div>
-                  <div className="grid grid-cols-3 px-4 py-2 text-sm font-semibold text-muted-foreground">
-                    <div>Time (IST)</div>
-                    <div>Result</div>
-                    <div>Language</div>
-                  </div>
-                  <div className="space-y-3">
-                    {problem.submissions.map((s, i) => (
-                      <div key={i} className="grid grid-cols-3 items-center px-4 py-3 rounded-xl border border-border bg-background">
-                        <div className="text-sm">{s.time}</div>
-                        <div className={`text-sm font-medium ${s.result === "Pass" ? "text-emerald-600" : "text-red-600"}`}>{s.result}</div>
-                        <div className="text-sm">{s.language}</div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Bottom bar — left side */}
-            <div className="flex items-center justify-between px-4 py-3 border-t border-border">
-              <div className="flex items-center gap-3">
-                <button className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-                  <ThumbsUp className="size-4" /> 3
-                </button>
-                <button className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-                  <ThumbsDown className="size-4" /> 0
-                </button>
-              </div>
-              <button
-                onClick={() => prev && goTo(prev.id)}
-                disabled={!prev}
-                className="inline-flex items-center gap-1 text-sm font-semibold px-3 py-1.5 rounded-md border border-border disabled:opacity-40 hover:bg-muted"
-              >
-                <ChevronLeft className="size-4" /> Previous Question
-              </button>
-            </div>
+      <div className="min-h-screen flex flex-col pb-[72px] relative">
+        <div className="max-w-[1400px] mx-auto w-full flex-1 relative">
+          {/* Breadcrumbs */}
+          <div className="flex items-center gap-1 sm:gap-2 text-sm mb-4 flex-wrap">
+            <Link to="/" className="text-[var(--brand-purple)] font-medium hover:underline">Coding Track</Link>
+            <ChevronRight className="size-3 text-muted-foreground" />
+            <Link to="/coding-history" className="text-[var(--brand-purple)] font-medium hover:underline">Coding History</Link>
+            <ChevronRight className="size-3 text-muted-foreground" />
+            <span className="font-semibold truncate">{problem.title}</span>
           </div>
 
-          {/* RIGHT — Code panel */}
-          <div className="rounded-2xl border border-border bg-[#0b1020] text-slate-100 flex flex-col overflow-hidden">
-            <div className="flex items-center justify-between px-4 py-3 border-b border-white/10">
-              <div className="flex items-center gap-2">
-                <span className="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-white/5">
-                  <Timer className="size-3.5" /> 00:00:00
-                </span>
-                <span className="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-white/5">
-                  <Zap className="size-3.5 text-yellow-400" /> score: 3/3
-                </span>
-                <span className="inline-flex items-center gap-1 text-xs font-medium px-3 py-1.5 rounded-full bg-white/5">
-                  Python <ChevronDown className="size-3.5" />
-                </span>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 min-h-[calc(100vh-300px)]">
+            {/* LEFT — Question / Submission */}
+            <div className="rounded-2xl border border-border bg-card flex flex-col overflow-hidden">
+              <div className="flex items-center gap-1 sm:gap-2 px-4 py-3 border-b border-border overflow-x-auto">
+                <button
+                  onClick={() => setTab("description")}
+                  className={`inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-full transition whitespace-nowrap ${
+                    tab === "description"
+                      ? "bg-[var(--easy)] text-emerald-900"
+                      : "text-muted-foreground hover:bg-muted/50"
+                  }`}
+                >
+                  <FileText className="size-3 sm:size-4" /> Description
+                </button>
+                <button
+                  onClick={() => setTab("submission")}
+                  className={`inline-flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-semibold px-3 sm:px-4 py-2 rounded-full transition whitespace-nowrap ${
+                    tab === "submission"
+                      ? "bg-[var(--easy)] text-emerald-900"
+                      : "text-muted-foreground hover:bg-muted/50"
+                  }`}
+                >
+                  <History className="size-3 sm:size-4" /> Submission
+                </button>
               </div>
-              <div className="flex items-center gap-2">
-                <button className="size-7 grid place-items-center rounded-md hover:bg-white/10"><RotateCw className="size-4" /></button>
-                <button className="size-7 grid place-items-center rounded-md hover:bg-white/10"><Maximize2 className="size-4" /></button>
+
+              <div className="p-5 overflow-auto flex-1">
+                {tab === "description" ? (
+                  <div className="space-y-5">
+                    <h2 className="text-2xl font-bold">{problem.title}</h2>
+                    <div className="flex items-center gap-3 flex-wrap">
+                      <span className="text-sm text-muted-foreground">{problem.topic}</span>
+                      <span className={`text-xs font-semibold px-3 py-1 rounded-full ${diffPill(problem.difficulty)}`}>
+                        {problem.difficulty}
+                      </span>
+                      <span className="text-xs font-semibold px-3 py-1 rounded-full bg-muted">{problem.success}</span>
+                    </div>
+                    <hr className="border-border" />
+
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2">Problem Description</h3>
+                      <div className="rounded-lg border border-border px-4 py-3 text-sm">
+                        {problem.description}
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2">Problem Constraints</h3>
+                      <div className="rounded-lg border border-border px-4 py-3">
+                        <ul className="list-disc pl-5 text-sm space-y-1">
+                          {problem.constraints.map((c, i) => <li key={i}>{c}</li>)}
+                        </ul>
+                      </div>
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2">Input Format</h3>
+                      <pre className="rounded-lg border border-border px-4 py-3 text-sm font-mono whitespace-pre-wrap">{problem.inputFormat}</pre>
+                    </div>
+
+                    <div>
+                      <h3 className="text-sm font-semibold mb-2">Output Format</h3>
+                      <pre className="rounded-lg border border-border px-4 py-3 text-sm font-mono whitespace-pre-wrap">{problem.outputFormat}</pre>
+                    </div>
+                  </div>
+                ) : (
+                  <div>
+                    <div className="grid grid-cols-3 px-4 py-2 text-sm font-semibold text-muted-foreground">
+                      <div>Time (IST)</div>
+                      <div>Result</div>
+                      <div>Language</div>
+                    </div>
+                    <div className="space-y-3">
+                      {problem.submissions.map((s, i) => (
+                        <div key={i} className="grid grid-cols-3 items-center px-4 py-3 rounded-xl border border-border bg-background">
+                          <div className="text-sm">{s.time}</div>
+                          <div className={`text-sm font-medium ${s.result === "Pass" ? "text-emerald-600" : "text-red-600"}`}>{s.result}</div>
+                          <div className="text-sm">{s.language}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
-            <pre className="text-xs leading-6 p-5 overflow-auto font-mono flex-1">
+            {/* RIGHT — Code panel */}
+            <div className="rounded-2xl border border-border bg-[#0b1020] text-slate-100 flex flex-col overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 gap-2">
+                <div className="flex items-center gap-1 sm:gap-2 overflow-x-auto min-w-0">
+                  <span className="inline-flex items-center gap-1 text-xs font-medium px-2 sm:px-3 py-1.5 rounded-full bg-white/5 whitespace-nowrap">
+                    <Timer className="size-3.5" /> 00:00:00
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium px-2 sm:px-3 py-1.5 rounded-full bg-white/5 whitespace-nowrap">
+                    <Zap className="size-3.5 text-yellow-400" /> score: 3/3
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium px-2 sm:px-3 py-1.5 rounded-full bg-white/5 whitespace-nowrap">
+                    Python <ChevronDown className="size-3.5" />
+                  </span>
+                </div>
+                <div className="flex items-center gap-1 sm:gap-2 shrink-0">
+                  <button className="size-7 grid place-items-center rounded-md hover:bg-white/10">
+                    <RotateCw className="size-3 sm:size-4" />
+                  </button>
+                  <button className="size-7 grid place-items-center rounded-md hover:bg-white/10">
+                    <Maximize2 className="size-3 sm:size-4" />
+                  </button>
+                </div>
+              </div>
+
+              <pre className="text-xs leading-6 p-5 overflow-auto font-mono flex-1">
 {problem.code.split("\n").map((line, i) => (
   <div key={i} className="grid grid-cols-[2.5rem_1fr] gap-3">
     <span className="text-slate-500 text-right select-none">{i + 1}</span>
     <span>{line || " "}</span>
   </div>
 ))}
-            </pre>
-
-            {/* Bottom bar — right side */}
-            <div className="flex items-center justify-end gap-2 px-4 py-3 border-t border-white/10">
-              <Link to="/coding-history" className="text-xs text-white/60 hover:text-white mr-auto">Back to History</Link>
-              <button
-                onClick={() => next && goTo(next.id)}
-                disabled={!next}
-                className="inline-flex items-center gap-1 text-sm font-semibold px-4 py-2 rounded-full bg-[var(--easy)] text-emerald-900 disabled:opacity-40 hover:opacity-90"
-              >
-                Next Question <ChevronRight className="size-4" />
-              </button>
+              </pre>
             </div>
+          </div>
+        </div>
+
+        {/* Page Footer */}
+        <div className="fixed bottom-0 left-0 right-0 lg:left-64 bg-card border-t border-border z-40 shadow-[0_-8px_30px_-20px_rgba(0,0,0,0.35)]">
+          <div className="max-w-[1400px] mx-auto flex flex-col sm:flex-row items-stretch sm:items-center justify-between px-4 py-3 gap-2 sm:gap-0">
+            <button
+              onClick={() => prev && goTo(prev.id)}
+              disabled={!prev}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 text-sm font-semibold px-4 py-2 rounded-md border border-border disabled:opacity-40 hover:bg-muted"
+            >
+              <ChevronLeft className="size-4" /> Previous
+            </button>
+            <button
+              onClick={() => next && goTo(next.id)}
+              disabled={!next}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1 text-sm font-semibold px-4 py-2 rounded-full bg-[var(--easy)] text-emerald-900 disabled:opacity-40 hover:opacity-90"
+            >
+              Next Question <ChevronRight className="size-4" />
+            </button>
           </div>
         </div>
       </div>

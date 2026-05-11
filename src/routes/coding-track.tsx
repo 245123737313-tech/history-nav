@@ -110,16 +110,16 @@ function diffBg(d: string) {
 function CodingTrackPage() {
   return (
     <AppShell>
-      <div className="max-w-[1400px] mx-auto">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-6">
+        <div className="flex items-center gap-1 sm:gap-2 text-sm text-muted-foreground mb-4 sm:mb-6 flex-wrap">
           <Code2 className="size-4" />
           <span className="text-[var(--brand-purple)] font-medium">Practice</span>
-          <ChevronRight className="size-4" />
+          <ChevronRight className="size-3 sm:size-4" />
           <span className="text-foreground font-medium">Coding Track</span>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-[1fr_360px] gap-6">
+        <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4 xl:gap-6">
           {/* LEFT */}
           <div className="space-y-6">
             {/* Challenge of the Day */}
@@ -127,15 +127,15 @@ function CodingTrackPage() {
               className="rounded-2xl p-6 text-white relative overflow-hidden"
               style={{ background: "var(--gradient-cod)" }}
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-4">
                 <div>
-                  <h2 className="text-2xl font-bold">Challenge of the Day</h2>
+                  <h2 className="text-xl sm:text-2xl font-bold">Challenge of the Day</h2>
                   <p className="text-white/80 text-sm mt-1 flex items-center gap-1">
                     <Flame className="size-4 text-orange-300" /> Streak active · 3/3 solved today
                   </p>
                 </div>
-                <div className="text-right">
-                  <div className="bg-white/15 backdrop-blur rounded-full px-4 py-1.5 text-sm font-semibold flex items-center gap-2">
+                <div className="text-left sm:text-right">
+                  <div className="bg-white/15 backdrop-blur rounded-full px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold flex items-center gap-2">
                     <Clock className="size-4" /> End in <span className="font-bold">07:06:40</span>
                   </div>
                   <p className="text-xs text-white/70 mt-2">
@@ -145,17 +145,17 @@ function CodingTrackPage() {
               </div>
               <div className="space-y-3">
                 {challenges.map((c) => (
-                  <div key={c.title} className="bg-white/10 backdrop-blur rounded-xl px-4 py-3 flex items-center gap-4">
-                    <span className={`text-xs font-bold px-3 py-1 rounded-md ${diffBg(c.level)}`}>{c.level}</span>
+                  <div key={c.title} className="bg-white/10 backdrop-blur rounded-xl px-3 sm:px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                    <span className={`text-xs font-bold px-2 sm:px-3 py-1 rounded-md ${diffBg(c.level)} self-start`}>{c.level}</span>
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold line-through decoration-white/60">{c.title}</div>
-                      <div className="text-xs text-white/80 flex items-center gap-3 mt-0.5">
+                      <div className="text-xs text-white/80 flex flex-wrap items-center gap-2 sm:gap-3 mt-0.5">
                         <span>✓ {c.accuracy} accuracy</span>
                         <span>👥 {c.attempts} attempts</span>
                         <span className="flex items-center gap-1"><Coins className="size-3 text-amber-300" /> +{c.coins} coins</span>
                       </div>
                     </div>
-                    <button className="bg-white/20 hover:bg-white/30 transition rounded-md px-4 py-1.5 text-sm font-semibold flex items-center gap-1">
+                    <button className="bg-white/20 hover:bg-white/30 transition rounded-md px-3 sm:px-4 py-1.5 text-xs sm:text-sm font-semibold flex items-center gap-1 self-start">
                       ✓ Solved
                     </button>
                   </div>
@@ -174,17 +174,17 @@ function CodingTrackPage() {
                   <History className="size-4" /> View History
                 </Link>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
                 {stats.map((s) => {
                   const Icon = s.icon;
                   return (
-                    <div key={s.label} className="rounded-xl border border-border bg-card p-5">
-                      <Icon className={`size-5 ${s.color}`} />
-                      <div className="mt-4 flex items-baseline gap-1">
-                        <span className="text-3xl font-bold">{s.value}</span>
+                    <div key={s.label} className="rounded-xl border border-border bg-card p-3 sm:p-5">
+                      <Icon className={`size-4 sm:size-5 ${s.color}`} />
+                      <div className="mt-2 sm:mt-4 flex items-baseline gap-1">
+                        <span className="text-2xl sm:text-3xl font-bold">{s.value}</span>
                         {s.suffix && <span className="text-xs text-muted-foreground">{s.suffix}</span>}
                       </div>
-                      <div className="text-sm text-muted-foreground mt-1">{s.label}</div>
+                      <div className="text-xs sm:text-sm text-muted-foreground mt-1">{s.label}</div>
                     </div>
                   );
                 })}
@@ -194,10 +194,10 @@ function CodingTrackPage() {
             {/* Coding Plan */}
             <section>
               <h3 className="text-2xl font-bold mb-4">Coding Plan</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                 {plans.map((p) => (
                   <div key={p.title} className="rounded-xl border border-border bg-card p-3 flex items-center gap-3 hover:shadow-md transition">
-                    <div className={`size-16 rounded-lg ${p.color} grid place-items-center text-white font-bold text-xl shrink-0`}>{p.code}</div>
+                    <div className={`size-12 sm:size-16 rounded-lg ${p.color} grid place-items-center text-white font-bold text-lg sm:text-xl shrink-0`}>{p.code}</div>
                     <div className="min-w-0">
                       <div className="font-semibold truncate">{p.title}</div>
                       <div className="text-xs text-muted-foreground truncate">{p.subtitle}</div>
@@ -208,21 +208,21 @@ function CodingTrackPage() {
             </section>
 
             {/* Topics */}
-            <section className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            <section className="flex flex-wrap items-center gap-x-4 gap-y-2 sm:gap-x-6">
               {topics.map(([t, n]) => (
-                <button key={t} className="flex items-center gap-2 text-sm font-medium hover:text-[var(--brand-purple)]">
+                <button key={t} className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm font-medium hover:text-[var(--brand-purple)]">
                   {t}
-                  <span className="text-xs text-muted-foreground bg-muted rounded-full px-2 py-0.5">{n}</span>
+                  <span className="text-xs text-muted-foreground bg-muted rounded-full px-1.5 sm:px-2 py-0.5">{n}</span>
                 </button>
               ))}
-              <button className="flex items-center gap-1 text-sm font-semibold bg-lime-300 text-black rounded-md px-3 py-1.5">
+              <button className="flex items-center gap-1 text-xs sm:text-sm font-semibold bg-lime-300 text-black rounded-md px-2 sm:px-3 py-1.5">
                 Mathematic <ChevronDown className="size-3" />
-                <span className="ml-1">Expand</span>
+                <span className="hidden sm:inline ml-1">Expand</span>
               </button>
             </section>
 
             {/* Search & filters */}
-            <section className="flex gap-3">
+            <section className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <div className="flex-1 relative">
                 <Search className="size-4 absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" />
                 <input
@@ -230,17 +230,23 @@ function CodingTrackPage() {
                   className="w-full pl-9 pr-3 py-2.5 rounded-lg border border-border bg-card text-sm"
                 />
               </div>
-              <button className="px-4 py-2.5 rounded-lg border border-border bg-card text-sm flex items-center gap-2">
-                Difficulty <ChevronDown className="size-3" />
-              </button>
-              <button className="px-4 py-2.5 rounded-lg border border-border bg-card text-sm flex items-center gap-2">
-                Status <ChevronDown className="size-3" />
-              </button>
+              <div className="flex gap-2 sm:gap-3">
+                <button className="flex-1 sm:flex-none px-3 sm:px-4 py-2.5 rounded-lg border border-border bg-card text-sm flex items-center gap-2 justify-center">
+                  <span className="hidden sm:inline">Difficulty</span>
+                  <span className="sm:hidden">Diff</span>
+                  <ChevronDown className="size-3" />
+                </button>
+                <button className="flex-1 sm:flex-none px-3 sm:px-4 py-2.5 rounded-lg border border-border bg-card text-sm flex items-center gap-2 justify-center">
+                  <span className="hidden sm:inline">Status</span>
+                  <span className="sm:hidden">Stat</span>
+                  <ChevronDown className="size-3" />
+                </button>
+              </div>
             </section>
 
             {/* Question list */}
             <section>
-              <div className="grid grid-cols-[40px_1fr_80px_80px] px-4 py-2 text-sm text-muted-foreground">
+              <div className="hidden md:grid grid-cols-[40px_1fr_80px_80px] px-4 py-2 text-sm text-muted-foreground">
                 <div>Status</div>
                 <div>Title</div>
                 <div className="text-right">Acceptance</div>
@@ -250,20 +256,26 @@ function CodingTrackPage() {
                 {questions.map((q, i) => (
                   <div
                     key={i}
-                    className="grid grid-cols-[40px_1fr_80px_80px] items-center px-4 py-3 rounded-lg border border-border bg-card border-l-4 border-l-lime-300"
+                    className="grid grid-cols-[40px_1fr] md:grid-cols-[40px_1fr_80px_80px] items-center px-3 sm:px-4 py-3 rounded-lg border border-border bg-card border-l-4 border-l-lime-300 gap-2 md:gap-0"
                   >
                     <div>
                       {q.status === "done" ? (
-                        <CheckCircle2 className="size-5 text-lime-500 fill-lime-200" />
+                        <CheckCircle2 className="size-4 sm:size-5 text-lime-500 fill-lime-200" />
                       ) : q.status === "attempted" ? (
-                        <Timer className="size-5 text-muted-foreground" />
+                        <Timer className="size-4 sm:size-5 text-muted-foreground" />
                       ) : (
-                        <Circle className="size-5 text-muted-foreground/40" />
+                        <Circle className="size-4 sm:size-5 text-muted-foreground/40" />
                       )}
                     </div>
-                    <div className="text-sm font-medium truncate">{q.title}</div>
-                    <div className="text-right text-sm">{q.acc}</div>
-                    <div className={`text-right text-sm font-medium ${diffColor(q.diff)}`}>{q.diff}</div>
+                    <div className="min-w-0">
+                      <div className="text-sm font-medium truncate">{q.title}</div>
+                      <div className="md:hidden flex items-center gap-2 mt-1">
+                        <span className="text-xs text-muted-foreground">{q.acc}</span>
+                        <span className={`text-xs font-medium ${diffColor(q.diff)}`}>{q.diff}</span>
+                      </div>
+                    </div>
+                    <div className="hidden md:block text-right text-sm">{q.acc}</div>
+                    <div className={`hidden md:block text-right text-sm font-medium ${diffColor(q.diff)}`}>{q.diff}</div>
                   </div>
                 ))}
               </div>
@@ -273,18 +285,18 @@ function CodingTrackPage() {
           {/* RIGHT SIDEBAR */}
           <aside className="space-y-6">
             {/* Calendar */}
-            <div className="rounded-2xl border border-border bg-card p-4">
+            <div className="rounded-2xl border border-border bg-card p-3 sm:p-4">
               <div className="flex items-center justify-between mb-3">
-                <button className="size-7 grid place-items-center rounded-md bg-[var(--brand-purple)] text-white">
-                  <ChevronLeft className="size-4" />
+                <button className="size-6 sm:size-7 grid place-items-center rounded-md bg-[var(--brand-purple)] text-white">
+                  <ChevronLeft className="size-3 sm:size-4" />
                 </button>
-                <div className="font-bold text-[var(--brand-purple)]">May 2026</div>
-                <button className="size-7 grid place-items-center rounded-md bg-[var(--brand-purple)] text-white">
-                  <ChevronRight className="size-4" />
+                <div className="font-bold text-[var(--brand-purple)] text-sm sm:text-base">May 2026</div>
+                <button className="size-6 sm:size-7 grid place-items-center rounded-md bg-[var(--brand-purple)] text-white">
+                  <ChevronRight className="size-3 sm:size-4" />
                 </button>
               </div>
               <div className="grid grid-cols-7 text-center text-xs font-semibold text-[var(--brand-purple)] mb-2">
-                {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <div key={d}>{d}</div>)}
+                {["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d => <div key={d} className="text-xs sm:text-sm">{d}</div>)}
               </div>
               <div className="grid grid-cols-7 gap-1 text-center text-sm">
                 {Array.from({ length: 5 }).map((_, i) => <div key={`e${i}`} />)}

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as CodingTrackRouteImport } from './routes/coding-track'
 import { Route as CodingHistoryRouteImport } from './routes/coding-history'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SubmissionsIdRouteImport } from './routes/submissions.$id'
 
 const CodingTrackRoute = CodingTrackRouteImport.update({
   id: '/coding-track',
@@ -28,35 +29,49 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SubmissionsIdRoute = SubmissionsIdRouteImport.update({
+  id: '/submissions/$id',
+  path: '/submissions/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/coding-history': typeof CodingHistoryRoute
   '/coding-track': typeof CodingTrackRoute
+  '/submissions/$id': typeof SubmissionsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/coding-history': typeof CodingHistoryRoute
   '/coding-track': typeof CodingTrackRoute
+  '/submissions/$id': typeof SubmissionsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/coding-history': typeof CodingHistoryRoute
   '/coding-track': typeof CodingTrackRoute
+  '/submissions/$id': typeof SubmissionsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/coding-history' | '/coding-track'
+  fullPaths: '/' | '/coding-history' | '/coding-track' | '/submissions/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/coding-history' | '/coding-track'
-  id: '__root__' | '/' | '/coding-history' | '/coding-track'
+  to: '/' | '/coding-history' | '/coding-track' | '/submissions/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/coding-history'
+    | '/coding-track'
+    | '/submissions/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CodingHistoryRoute: typeof CodingHistoryRoute
   CodingTrackRoute: typeof CodingTrackRoute
+  SubmissionsIdRoute: typeof SubmissionsIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +97,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/submissions/$id': {
+      id: '/submissions/$id'
+      path: '/submissions/$id'
+      fullPath: '/submissions/$id'
+      preLoaderRoute: typeof SubmissionsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,7 +111,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CodingHistoryRoute: CodingHistoryRoute,
   CodingTrackRoute: CodingTrackRoute,
+  SubmissionsIdRoute: SubmissionsIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

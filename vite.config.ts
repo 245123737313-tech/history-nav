@@ -1,10 +1,17 @@
-import { defineConfig } from "@lovable.dev/vite-tanstack-config";
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwind from "@tailwindcss/vite";
+import path from "path";
 
 export default defineConfig({
-  vite: {
-    build: {
-      chunkSizeWarningLimit: 1200,
+  plugins: [react(), tailwind()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    chunkSizeWarningLimit: 1200,
   },
 });
 

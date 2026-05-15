@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import AppShell from "@/components/AppShell";
 import {
   ChevronLeft,
@@ -18,16 +18,6 @@ import {
   Timer,
   Code2,
 } from "lucide-react";
-
-export const Route = createFileRoute("/coding-track")({
-  head: () => ({
-    meta: [
-      { title: "Coding Track — TaPTaP" },
-      { name: "description", content: "Daily coding challenges, plans, and practice." },
-    ],
-  }),
-  component: CodingTrackPage,
-});
 
 const challenges = [
   { level: "EASY", title: "Count Negative Numbers in a Sorted Matrix", accuracy: "92.31%", attempts: 13, coins: 5 },

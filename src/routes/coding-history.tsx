@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import AppShell from "@/components/AppShell";
 import {
@@ -18,16 +18,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
-export const Route = createFileRoute("/coding-history")({
-  head: () => ({
-    meta: [
-      { title: "Coding History — TaPTaP" },
-      { name: "description", content: "Your past Challenge of the Day attempts and progress." },
-    ],
-  }),
-  component: CodingHistory,
-});
 
 type Problem = {
   id: string;
@@ -206,8 +196,7 @@ function CodingHistory() {
                             </span>
                           </div>
                           <Link
-                            to="/submissions/$id"
-                            params={{ id: p.id }}
+                            to={`/submissions/${p.id}`}
                             className="inline-flex items-center gap-1 text-sm font-semibold text-[var(--brand-purple)] border border-[var(--brand-purple)]/30 hover:bg-[var(--brand-purple)]/10 px-3 py-1.5 rounded-md whitespace-nowrap self-start sm:self-auto"
                           >
                             View <ExternalLink className="size-3" />

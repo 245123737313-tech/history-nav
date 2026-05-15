@@ -1,6 +1,5 @@
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import AppShell from "@/components/AppShell";
 import {
   ChevronLeft,
   ChevronRight,
@@ -115,7 +114,6 @@ function SubmissionPage() {
   const goTo = (pid: string) => navigate(`/submissions/${pid}`);
 
   return (
-    <AppShell>
       <div className="min-h-screen flex flex-col pb-[72px] relative">
         <div className="max-w-[1400px] mx-auto w-full flex-1 relative">
           {/* Breadcrumbs */}
@@ -269,7 +267,6 @@ function SubmissionPage() {
           </div>
         </div>
       </div>
-    </AppShell>
   );
 }
 

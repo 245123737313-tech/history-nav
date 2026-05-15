@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import AppShell from "@/components/AppShell";
 import {
   ChevronLeft,
   ChevronRight,
@@ -99,15 +98,14 @@ function diffBg(d: string) {
 
 function CodingTrackPage() {
   return (
-    <AppShell>
-      <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <div className="flex items-center gap-1 sm:gap-2 text-sm text-muted-foreground mb-4 sm:mb-6 flex-wrap">
-          <Code2 className="size-4" />
-          <span className="text-[var(--brand-purple)] font-medium">Practice</span>
-          <ChevronRight className="size-3 sm:size-4" />
-          <span className="text-foreground font-medium">Coding Track</span>
-        </div>
+    <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Breadcrumb */}
+      <div className="flex items-center gap-1 sm:gap-2 text-sm text-muted-foreground mb-4 sm:mb-6 flex-wrap">
+        <Code2 className="size-4" />
+        <span className="text-[var(--brand-purple)] font-medium">Practice</span>
+        <ChevronRight className="size-3 sm:size-4" />
+        <span className="text-foreground font-medium">Coding Track</span>
+      </div>
 
         <div className="grid grid-cols-1 xl:grid-cols-[1fr_320px] gap-4 xl:gap-6">
           {/* LEFT */}
@@ -409,7 +407,6 @@ function CodingTrackPage() {
           </aside>
         </div>
       </div>
-    </AppShell>
   );
 }
 

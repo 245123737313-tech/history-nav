@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import AppShell from "@/components/AppShell";
 import {
   ChevronLeft,
   CheckCircle2,
@@ -67,7 +66,6 @@ function CodingHistory() {
   const [range, setRange] = useState("30d");
 
   return (
-    <AppShell>
       <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center gap-1 sm:gap-2 text-sm text-muted-foreground mb-4 sm:mb-6">
           <Link to="/" className="text-[var(--brand-purple)] font-medium hover:underline flex items-center gap-1">
@@ -211,7 +209,6 @@ function CodingHistory() {
           })}
         </div>
       </div>
-    </AppShell>
   );
 }
 
